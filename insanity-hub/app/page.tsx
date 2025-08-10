@@ -93,7 +93,7 @@ export default function InsanityHub() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground relative overflow-x-hidden">
       {/* Global Styles */}
       <style jsx global>{`
         .fade-in {
@@ -108,7 +108,7 @@ export default function InsanityHub() {
         }
         
         .geometric-bg {
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+          background: linear-gradient(135deg, hsl(var(--primary) / 0.02) 0%, transparent 50%);
           position: relative;
         }
         
@@ -120,36 +120,25 @@ export default function InsanityHub() {
           right: 0;
           bottom: 0;
           background: 
-            linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.01) 50%, transparent 100%),
-            linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.01) 50%, transparent 100%);
+            linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.01) 50%, transparent 100%),
+            linear-gradient(0deg, transparent 0%, hsl(var(--primary) / 0.01) 50%, transparent 100%);
           pointer-events: none;
         }
         
         .text-gradient {
-          background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 50%, #cccccc 100%);
+          background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--muted-foreground)) 50%, hsl(var(--foreground)) 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
 
         .insanity-title {
-          background: linear-gradient(45deg, #ffffff, #e5e5e5, #ffffff, #cccccc);
+          background: linear-gradient(45deg, hsl(var(--foreground)), hsl(var(--muted-foreground)), hsl(var(--foreground)), hsl(var(--muted-foreground)));
           background-size: 400% 400%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
           animation: insanity-glow 3s ease-in-out infinite, insanity-pulse 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes insanity-glow {
-          0%, 100% {
-            background-position: 0% 50%;
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
-          }
-          50% {
-            background-position: 100% 50%;
-            filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.6));
-          }
         }
 
         @keyframes insanity-pulse {
@@ -167,31 +156,22 @@ export default function InsanityHub() {
         
         .hover-scale:hover {
           transform: scale(1.05) rotate(1deg);
-          box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+          box-shadow: 0 10px 30px hsl(var(--primary) / 0.1);
         }
         
         .border-gradient {
           position: relative;
-          background: rgba(0, 0, 0, 0.5);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: hsl(var(--card));
+          border: 1px solid hsl(var(--border));
           animation: border-pulse 4s ease-in-out infinite;
         }
 
-        @keyframes border-pulse {
-          0%, 100% {
-            border-color: rgba(255, 255, 255, 0.1);
-          }
-          50% {
-            border-color: rgba(255, 255, 255, 0.3);
-          }
-        }
-        
         .border-gradient::before {
           content: '';
           position: absolute;
           inset: 0;
           padding: 1px;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent, rgba(255, 255, 255, 0.1));
+          background: linear-gradient(135deg, hsl(var(--primary)), transparent, hsl(var(--accent)));
           border-radius: inherit;
           mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
           mask-composite: xor;
@@ -205,7 +185,7 @@ export default function InsanityHub() {
 
         .floating-dot {
           position: absolute;
-          background: rgba(255, 255, 255, 0.1);
+          background: hsl(var(--primary) / 0.1);
           border-radius: 50%;
           pointer-events: none;
           animation: float-dot 8s ease-in-out infinite;
@@ -252,11 +232,11 @@ export default function InsanityHub() {
 
         @keyframes pulse-glow {
           0%, 100% {
-            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 5px hsl(var(--primary) / 0.2);
             transform: scale(1);
           }
           50% {
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 20px hsl(var(--primary) / 0.4);
             transform: scale(1.1);
           }
         }
@@ -301,24 +281,10 @@ export default function InsanityHub() {
           }
         }
 
-        .glow-effect {
-          box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-          animation: glow-pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes glow-pulse {
-          0%, 100% {
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-          }
-          50% {
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
-          }
-        }
-
         .feature-card {
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+          background: linear-gradient(135deg, hsl(var(--primary) / 0.05) 0%, hsl(var(--primary) / 0.01) 100%);
           backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          border: 1px solid hsl(var(--border));
           transition: all 0.3s ease;
           animation: card-float 6s ease-in-out infinite;
         }
@@ -333,10 +299,10 @@ export default function InsanityHub() {
         }
 
         .feature-card:hover {
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-          border-color: rgba(255, 255, 255, 0.2);
+          background: linear-gradient(135deg, hsl(var(--primary) / 0.08) 0%, hsl(var(--primary) / 0.02) 100%);
+          border-color: hsl(var(--primary) / 0.2);
           transform: translateY(-10px) scale(1.02);
-          box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+          box-shadow: 0 20px 40px hsl(var(--primary) / 0.1);
         }
 
         .animated-badge {
@@ -365,7 +331,7 @@ export default function InsanityHub() {
           left: -100%;
           width: 100%;
           height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.2), transparent);
           transition: left 0.5s;
         }
 
@@ -375,7 +341,7 @@ export default function InsanityHub() {
 
         .animated-button:hover {
           transform: scale(1.05) translateY(-2px);
-          box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+          box-shadow: 0 10px 25px hsl(var(--primary) / 0.2);
         }
 
         .stat-card {
@@ -396,19 +362,6 @@ export default function InsanityHub() {
           }
           50% {
             transform: translateY(-8px) rotate(1deg);
-          }
-        }
-
-        .progress-bar {
-          animation: progress-glow 2s ease-in-out infinite;
-        }
-
-        @keyframes progress-glow {
-          0%, 100% {
-            box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
-          }
-          50% {
-            box-shadow: 0 0 20px rgba(255, 193, 7, 0.6);
           }
         }
       `}</style>
@@ -440,8 +393,8 @@ export default function InsanityHub() {
               top: `${Math.random() * 100}%`,
               width: `${Math.random() * 4 + 2}px`,
               height: `${Math.random() * 4 + 2}px`,
+              background: `hsl(var(--primary) / ${Math.random() * 0.2 + 0.05})`,
               animationDelay: `${Math.random() * 6}s`,
-              background: `rgba(255, 255, 255, ${Math.random() * 0.2 + 0.05})`,
             }}
           />
         ))}
@@ -456,7 +409,7 @@ export default function InsanityHub() {
               top: `${Math.random() * 100}%`,
               width: `${Math.random() * 2 + 1}px`,
               height: `${Math.random() * 2 + 1}px`,
-              background: `rgba(255, 255, 255, ${Math.random() * 0.15 + 0.02})`,
+              background: `hsl(var(--primary) / ${Math.random() * 0.15 + 0.02})`,
               animationDelay: `${Math.random() * 5}s`,
             }}
           />
@@ -469,9 +422,9 @@ export default function InsanityHub() {
           className="absolute inset-0"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
-            `,
+            linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px)
+          `,
             backgroundSize: "50px 50px",
           }}
         />
@@ -480,13 +433,13 @@ export default function InsanityHub() {
       {/* Welcome Portal Modal */}
       {showWelcomePortal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center modal-backdrop">
-          <Card className="w-full max-w-md mx-4 bg-black/90 border-white/20 animated-button">
+          <Card className="w-full max-w-md mx-4 bg-card border-border animated-button">
             <CardHeader className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-white rounded-2xl flex items-center justify-center glow-effect">
-                <Zap className="w-8 h-8 text-black" />
+              <div className="w-16 h-16 mx-auto mb-4 bg-primary rounded-2xl flex items-center justify-center glow-effect">
+                <Zap className="w-8 h-8 text-primary-foreground" />
               </div>
               <CardTitle className="text-2xl font-bold text-gradient">Does your beams say INSANITY?</CardTitle>
-              <p className="text-gray-400">Please confirm your setup</p>
+              <p className="text-muted-foreground">Please confirm your setup</p>
             </CardHeader>
             <CardContent className="space-y-6">
               {beamCheck === null && (
@@ -496,7 +449,7 @@ export default function InsanityHub() {
                     <div className="flex gap-4 justify-center">
                       <Button
                         onClick={() => handleBeamCheck("yes")}
-                        className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full animated-button"
+                        className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-full animated-button"
                       >
                         <CheckCircle className="w-4 h-4 mr-2" />
                         Yes
@@ -504,7 +457,7 @@ export default function InsanityHub() {
                       <Button
                         onClick={() => handleBeamCheck("no")}
                         variant="outline"
-                        className="border-red-500/50 bg-red-500/10 hover:bg-red-500/20 text-red-400 px-8 py-3 rounded-full animated-button"
+                        className="border-pink-500/50 bg-pink-500/10 hover:bg-pink-500/20 text-pink-400 px-8 py-3 rounded-full animated-button"
                       >
                         <X className="w-4 h-4 mr-2" />
                         No
@@ -516,21 +469,21 @@ export default function InsanityHub() {
 
               {beamCheck === "yes" && (
                 <div className="text-center space-y-4">
-                  <div className="w-16 h-16 mx-auto bg-green-500/20 rounded-full flex items-center justify-center glow-effect">
-                    <CheckCircle className="w-8 h-8 text-green-400" />
+                  <div className="w-16 h-16 mx-auto bg-purple-500/20 rounded-full flex items-center justify-center glow-effect">
+                    <CheckCircle className="w-8 h-8 text-purple-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-green-400">Verification Successful!</h3>
-                  <p className="text-gray-400">Welcome to INSANITY. Redirecting...</p>
+                  <h3 className="text-xl font-bold text-purple-400">Verification Successful!</h3>
+                  <p className="text-muted-foreground">Welcome to INSANITY. Redirecting...</p>
                 </div>
               )}
 
               {beamCheck === "no" && (
                 <div className="text-center space-y-4">
-                  <div className="w-16 h-16 mx-auto bg-red-500/20 rounded-full flex items-center justify-center glow-effect">
-                    <AlertCircle className="w-8 h-8 text-red-400" />
+                  <div className="w-16 h-16 mx-auto bg-pink-500/20 rounded-full flex items-center justify-center glow-effect">
+                    <AlertCircle className="w-8 h-8 text-pink-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-red-400">Unhook Required</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
+                  <h3 className="text-xl font-bold text-pink-400">Unhook Required</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     You need to unhook your current setup first. Watch this tutorial to learn how:
                   </p>
                   <Button
@@ -538,7 +491,7 @@ export default function InsanityHub() {
                       incrementClicks()
                       window.open("https://streamable.com/06tnbq", "_blank")
                     }}
-                    className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full w-full animated-button"
+                    className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-full w-full animated-button"
                   >
                     <Play className="w-4 h-4 mr-2" />
                     Watch Unhook Tutorial
@@ -546,7 +499,7 @@ export default function InsanityHub() {
                   <Button
                     onClick={() => setBeamCheck(null)}
                     variant="outline"
-                    className="border-white/20 bg-transparent hover:bg-white/5 text-white px-6 py-2 rounded-full w-full animated-button"
+                    className="border-border bg-transparent hover:bg-secondary text-foreground px-6 py-2 rounded-full w-full animated-button"
                   >
                     Back to Verification
                   </Button>
@@ -561,8 +514,8 @@ export default function InsanityHub() {
       {showSessionCounter && (
         <div className="fixed top-8 right-8 z-40 border-gradient rounded-2xl p-4 backdrop-blur-xl glow-effect">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-gray-300">Session</span>
+            <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+            <span className="text-muted-foreground">Session</span>
           </div>
           <div className="text-2xl font-bold">{sessionClicks}</div>
         </div>
@@ -570,7 +523,7 @@ export default function InsanityHub() {
 
       {/* Achievement */}
       {achievement && (
-        <div className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 bg-white text-black px-6 py-3 rounded-full font-medium animate-in slide-in-from-top duration-500 glow-effect">
+        <div className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium animate-in slide-in-from-top duration-500 glow-effect">
           {achievement}
         </div>
       )}
@@ -581,7 +534,7 @@ export default function InsanityHub() {
           <div className="fade-in mb-8">
             <Badge
               variant="outline"
-              className="border-white/20 bg-white/5 text-white px-4 py-2 rounded-full animated-badge"
+              className="border-border bg-primary/10 text-primary-foreground px-4 py-2 rounded-full animated-badge"
             >
               ⚡ Premium Access • Trusted by 800+ Users
             </Badge>
@@ -589,13 +542,13 @@ export default function InsanityHub() {
 
           <div className="fade-in mb-12">
             <h1 className="text-7xl md:text-9xl font-black mb-6 insanity-title tracking-tight">INSANITY</h1>
-            <p className="text-xl md:text-2xl text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed">
               The Ultimate Beam Hub Experience
             </p>
           </div>
 
           <div className="fade-in mb-16">
-            <p className="text-gray-500 max-w-xl mx-auto mb-12 leading-relaxed">
+            <p className="text-muted-foreground max-w-xl mx-auto mb-12 leading-relaxed">
               Lightning-fast generators, military-grade security, and unmatched reliability. Built by professionals, for
               professionals who demand excellence.
             </p>
@@ -603,7 +556,7 @@ export default function InsanityHub() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-white text-black hover:bg-gray-100 px-8 py-6 rounded-full font-medium animated-button glow-effect"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 rounded-full font-medium animated-button glow-effect"
                 onClick={() => {
                   incrementClicks()
                   window.open("https://discord.gg/genn", "_blank")
@@ -617,7 +570,7 @@ export default function InsanityHub() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-white/20 bg-transparent hover:bg-white/5 text-white px-8 py-6 rounded-full font-medium animated-button"
+                className="border-border bg-transparent hover:bg-secondary text-foreground px-8 py-6 rounded-full font-medium animated-button"
                 onClick={() => {
                   incrementClicks()
                   window.open("https://streamable.com/h57bbl", "_blank")
@@ -631,7 +584,7 @@ export default function InsanityHub() {
 
           <button
             onClick={scrollToStats}
-            className="fade-in text-gray-600 hover:text-gray-400 transition-colors duration-300 group"
+            className="fade-in text-muted-foreground hover:text-foreground transition-colors duration-300 group"
           >
             <ChevronDown className="w-6 h-6 animate-bounce group-hover:scale-110 transition-transform" />
           </button>
@@ -643,26 +596,26 @@ export default function InsanityHub() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20 fade-in">
             <h2 className="text-4xl md:text-6xl font-bold mb-4 text-gradient">Why Choose INSANITY?</h2>
-            <p className="text-gray-500">Premium features that set us apart</p>
+            <p className="text-muted-foreground">Premium features that set us apart</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="fade-in feature-card rounded-3xl p-8 text-center">
-              <div className="w-16 h-16 mx-auto mb-6 bg-blue-500/20 rounded-2xl flex items-center justify-center glow-effect">
-                <Shield className="w-8 h-8 text-blue-400" />
+              <div className="w-16 h-16 mx-auto mb-6 bg-purple-500/20 rounded-2xl flex items-center justify-center glow-effect">
+                <Shield className="w-8 h-8 text-purple-400" />
               </div>
               <h3 className="text-xl font-bold mb-4">Military-Grade Security</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 Advanced encryption and security protocols protect your data and ensure complete anonymity.
               </p>
             </div>
 
             <div className="fade-in feature-card rounded-3xl p-8 text-center">
-              <div className="w-16 h-16 mx-auto mb-6 bg-green-500/20 rounded-2xl flex items-center justify-center glow-effect">
-                <Rocket className="w-8 h-8 text-green-400" />
+              <div className="w-16 h-16 mx-auto mb-6 bg-pink-500/20 rounded-2xl flex items-center justify-center glow-effect">
+                <Rocket className="w-8 h-8 text-pink-400" />
               </div>
               <h3 className="text-xl font-bold mb-4">Lightning Fast</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 Optimized servers and cutting-edge technology deliver results in under 1.8 seconds.
               </p>
             </div>
@@ -672,7 +625,7 @@ export default function InsanityHub() {
                 <Award className="w-8 h-8 text-purple-400" />
               </div>
               <h3 className="text-xl font-bold mb-4">Premium Support</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 24/7 dedicated support team ready to assist with any questions or issues.
               </p>
             </div>
@@ -685,30 +638,30 @@ export default function InsanityHub() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20 fade-in">
             <h2 className="text-4xl md:text-6xl font-bold mb-4 text-gradient">Performance Metrics</h2>
-            <p className="text-gray-500">Real numbers, real results, real trust</p>
+            <p className="text-muted-foreground">Real numbers, real results, real trust</p>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: Zap, value: "99.9%", label: "Uptime", color: "text-green-400" },
-              { icon: TrendingUp, value: "98.5%", label: "Success Rate", color: "text-blue-400" },
-              { icon: Globe, value: "800+", label: "Active Users", special: true, color: "text-yellow-400" },
-              { icon: Clock, value: "<1.8s", label: "Response Time", color: "text-purple-400" },
+              { icon: Zap, value: "99.9%", label: "Uptime", color: "text-purple-400" },
+              { icon: TrendingUp, value: "98.5%", label: "Success Rate", color: "text-pink-400" },
+              { icon: Globe, value: "800+", label: "Active Users", special: true, color: "text-purple-400" },
+              { icon: Clock, value: "<1.8s", label: "Response Time", color: "text-pink-400" },
             ].map((stat, index) => (
               <div
                 key={index}
-                className={`fade-in text-center p-8 border-gradient rounded-3xl hover-scale stat-card ${stat.special ? "ring-2 ring-yellow-500/30" : ""}`}
+                className={`fade-in text-center p-8 border-gradient rounded-3xl hover-scale stat-card ${stat.special ? "ring-2 ring-purple-500/30" : ""}`}
               >
                 <div
-                  className={`w-12 h-12 mx-auto mb-6 rounded-2xl flex items-center justify-center glow-effect ${stat.special ? "bg-yellow-500/20" : "bg-white/10"}`}
+                  className={`w-12 h-12 mx-auto mb-6 rounded-2xl flex items-center justify-center glow-effect ${stat.special ? "bg-purple-500/20" : "bg-secondary"}`}
                 >
-                  <stat.icon className={`w-6 h-6 ${stat.special ? "text-yellow-400" : "text-white"}`} />
+                  <stat.icon className={`w-6 h-6 ${stat.special ? "text-purple-400" : "text-foreground"}`} />
                 </div>
-                <div className={`text-3xl font-bold mb-2 ${stat.color || "text-white"}`}>{stat.value}</div>
-                <div className="text-gray-500 text-sm font-medium">{stat.label}</div>
+                <div className={`text-3xl font-bold mb-2 ${stat.color || "text-foreground"}`}>{stat.value}</div>
+                <div className="text-muted-foreground text-sm font-medium">{stat.label}</div>
                 {stat.special && (
                   <div className="mt-2">
-                    <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30 px-2 py-1 text-xs rounded-full animated-badge">
+                    <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30 px-2 py-1 text-xs rounded-full animated-badge">
                       Bypasser at 1K!
                     </Badge>
                   </div>
@@ -720,22 +673,22 @@ export default function InsanityHub() {
           {/* Bypasser Announcement */}
           <div className="fade-in mt-16 text-center">
             <div className="border-gradient rounded-3xl p-8 max-w-2xl mx-auto glow-effect">
-              <div className="w-16 h-16 mx-auto mb-6 bg-yellow-500/20 rounded-2xl flex items-center justify-center glow-effect">
-                <Lock className="w-8 h-8 text-yellow-400" />
+              <div className="w-16 h-16 mx-auto mb-6 bg-purple-500/20 rounded-2xl flex items-center justify-center glow-effect">
+                <Lock className="w-8 h-8 text-purple-400" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-yellow-400">🔥 Bypasser Coming Soon!</h3>
-              <p className="text-gray-400 leading-relaxed mb-4">
+              <h3 className="text-2xl font-bold mb-4 text-purple-400">🔥 Bypasser Coming Soon!</h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">
                 Once we reach 1,000 active users, we'll release our premium bypasser tool. Help us grow the community
                 and unlock this exclusive feature!
               </p>
               <div className="mt-4">
-                <div className="w-full bg-gray-800 rounded-full h-3 mb-2">
+                <div className="w-full bg-secondary rounded-full h-3 mb-2">
                   <div
-                    className="bg-gradient-to-r from-yellow-500 to-orange-500 h-3 rounded-full transition-all duration-500 progress-bar"
+                    className="bg-gradient-to-r from-purple-500 to-pink-500 h-3 rounded-full transition-all duration-500 progress-bar"
                     style={{ width: "80%" }}
                   ></div>
                 </div>
-                <p className="text-sm text-gray-500">800/1000 users - 80% complete! Only 200 more to go!</p>
+                <p className="text-sm text-muted-foreground">800/1000 users - 80% complete! Only 200 more to go!</p>
               </div>
             </div>
           </div>
@@ -747,28 +700,28 @@ export default function InsanityHub() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20 fade-in">
             <h2 className="text-4xl md:text-6xl font-bold mb-4 text-gradient">Access Hub</h2>
-            <p className="text-gray-500">Choose your preferred access method</p>
+            <p className="text-muted-foreground">Choose your preferred access method</p>
           </div>
 
           {/* Main Generator */}
           <div className="fade-in mb-16">
             <div className="border-gradient rounded-3xl p-12 text-center hover-scale glow-effect">
-              <div className="w-16 h-16 mx-auto mb-8 bg-white rounded-2xl flex items-center justify-center glow-effect">
-                <Zap className="w-8 h-8 text-black" />
+              <div className="w-16 h-16 mx-auto mb-8 bg-primary rounded-2xl flex items-center justify-center glow-effect">
+                <Zap className="w-8 h-8 text-primary-foreground" />
               </div>
 
               <h3 className="text-3xl font-bold mb-4">Main Generator</h3>
-              <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                 Primary access with automatic authentication, age verification, and lightning-fast performance. Trusted
                 by 800+ users worldwide.
               </p>
 
               <div className="flex justify-center gap-4 mb-8">
-                <Badge className="bg-green-500/20 text-green-400 border-green-500/30 px-4 py-2 rounded-full animated-badge">
-                  <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
+                <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30 px-4 py-2 rounded-full animated-badge">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse" />
                   Live & Operational
                 </Badge>
-                <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30 px-4 py-2 rounded-full animated-badge">
+                <Badge className="bg-pink-500/20 text-pink-400 border-pink-500/30 px-4 py-2 rounded-full animated-badge">
                   <Star className="w-3 h-3 mr-1" />
                   Premium Quality
                 </Badge>
@@ -776,7 +729,7 @@ export default function InsanityHub() {
 
               <Button
                 size="lg"
-                className="bg-white text-black hover:bg-gray-100 px-12 py-6 rounded-full font-medium animated-button glow-effect"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-6 rounded-full font-medium animated-button glow-effect"
                 onClick={() => {
                   incrementClicks()
                   window.open("https://logged.tg/auth/insanitybeamer", "_blank")
@@ -793,21 +746,21 @@ export default function InsanityHub() {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="fade-in feature-card rounded-3xl p-8 hover-scale">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center glow-effect">
-                  <Eye className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 bg-secondary rounded-2xl flex items-center justify-center glow-effect">
+                  <Eye className="w-6 h-6 text-foreground" />
                 </div>
                 <div>
                   <h4 className="text-xl font-bold">Link Hider</h4>
-                  <p className="text-gray-500 text-sm">Secure proxy system</p>
+                  <p className="text-muted-foreground text-sm">Secure proxy system</p>
                 </div>
               </div>
-              <p className="text-gray-400 mb-6 text-sm leading-relaxed">
+              <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
                 Hide your beam URLs through our secure proxy system. Prevents flagging by security filters and maintains
                 maximum privacy.
               </p>
               <Button
                 variant="outline"
-                className="w-full border-white/20 bg-transparent hover:bg-white/5 text-white rounded-full animated-button"
+                className="w-full border-border bg-transparent hover:bg-secondary text-foreground rounded-full animated-button"
                 onClick={() => {
                   incrementClicks()
                   window.open("https://insanityhyperlink.netlify.app/", "_blank")
@@ -821,21 +774,21 @@ export default function InsanityHub() {
 
             <div className="fade-in feature-card rounded-3xl p-8 hover-scale">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center glow-effect">
-                  <RotateCcw className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 bg-secondary rounded-2xl flex items-center justify-center glow-effect">
+                  <RotateCcw className="w-6 h-6 text-foreground" />
                 </div>
                 <div>
                   <h4 className="text-xl font-bold">Cookie Refresher</h4>
-                  <p className="text-gray-500 text-sm">Bypass restrictions</p>
+                  <p className="text-muted-foreground text-sm">Bypass restrictions</p>
                 </div>
               </div>
-              <p className="text-gray-400 mb-6 text-sm leading-relaxed">
+              <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
                 Refresh and clear cookies to bypass restrictions and improve success rates. Essential tool for
                 maintaining optimal performance.
               </p>
               <Button
                 variant="outline"
-                className="w-full border-white/20 bg-transparent hover:bg-white/5 text-white rounded-full animated-button"
+                className="w-full border-border bg-transparent hover:bg-secondary text-foreground rounded-full animated-button"
                 onClick={() => {
                   incrementClicks()
                   window.open("https://app.genn.lu/tools/refresher", "_blank")
@@ -858,7 +811,7 @@ export default function InsanityHub() {
               <Users className="w-10 h-10 text-purple-400" />
             </div>
             <h2 className="text-3xl font-bold mb-6 text-gradient">Join Our Growing Community</h2>
-            <p className="text-gray-400 mb-8 leading-relaxed">
+            <p className="text-muted-foreground mb-8 leading-relaxed">
               Connect with 800+ like-minded users, get instant support, and stay updated with the latest features and
               announcements.
             </p>
@@ -881,12 +834,12 @@ export default function InsanityHub() {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 px-6 border-t border-white/10">
+      <footer className="py-16 px-6 border-t border-border">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <h3 className="text-3xl font-bold mb-2 text-gradient">INSANITY</h3>
-            <p className="text-gray-500 text-sm mb-4">The Ultimate Beam Hub Experience</p>
-            <div className="flex justify-center gap-8 text-xs text-gray-600 mb-4">
+            <p className="text-muted-foreground text-sm mb-4">The Ultimate Beam Hub Experience</p>
+            <div className="flex justify-center gap-8 text-xs text-muted-foreground mb-4">
               <span>Premium Quality</span>
               <span>•</span>
               <span>24/7 Support</span>
@@ -894,12 +847,12 @@ export default function InsanityHub() {
               <span>Trusted by 800+</span>
             </div>
           </div>
-          <div className="text-center text-gray-600 text-xs">
+          <div className="text-center text-muted-foreground text-xs">
             <p className="mb-2">© 2024 Insanity Beam Hub. All rights reserved.</p>
             <p className="flex items-center justify-center gap-2">
               Created by <span className="text-purple-400 font-medium">psykoticx</span>
               <span className="text-purple-400">•</span>
-              <span className="text-gray-500">Powered by Innovation</span>
+              <span className="text-muted-foreground">Powered by Innovation</span>
             </p>
           </div>
         </div>
